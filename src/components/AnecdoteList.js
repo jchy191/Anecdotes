@@ -12,6 +12,7 @@ const AnecdoteList = () => {
 			return 0;
 		});
 	});
+	const filter = useSelector(state => state.filter);
 	const dispatch = useDispatch();
 
 	const vote = ({ id, content }) => {
@@ -22,9 +23,12 @@ const AnecdoteList = () => {
 		}, 5000);
 	};
 
+
+	const anecdotesToShow = anecdotes.filter(anecdote => new RegExp(`${filter}`, 'i').test(anecdote.content));
+
 	return (
 		<div className='anecdote-list'>
-			{anecdotes.map(anecdote =>
+			{anecdotesToShow.map(anecdote => (
 				<div key={anecdote.id}>
 					<div>
 						{anecdote.content}
@@ -34,9 +38,8 @@ const AnecdoteList = () => {
 						<button onClick={() => vote(anecdote)}>vote</button>
 					</div>
 				</div>
-			)}
+			))}
 		</div>
-
 	);
 };
 
