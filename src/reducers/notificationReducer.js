@@ -9,16 +9,25 @@ const reducer = (state=null, action) => {
 	}
 };
 
-export const addNotification = (message) => {
+const showNotification = (message) => {
 	return {
 		type: 'ADD_NOTIF',
 		data: { message }
 	};
 };
 
-export const deleteNotification = () => {
+const deleteNotification = () => {
 	return {
 		type: 'DEL_NOTIF',
+	};
+};
+
+export const setNotification = (message, time) => {
+	return async dispatch => {
+		dispatch(showNotification(message));
+		setTimeout(() => {
+			dispatch(deleteNotification());
+		}, time);
 	};
 };
 
