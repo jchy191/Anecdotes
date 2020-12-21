@@ -23,7 +23,7 @@ const deleteNotification = () => {
 };
 
 export const setNotification = (message, time) => {
-	return async dispatch => {
+	return dispatch => {
 		dispatch(showNotification(message));
 		setTimeout(() => {
 			dispatch(deleteNotification());
