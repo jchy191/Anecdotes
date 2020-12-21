@@ -22,7 +22,7 @@ export const voteAnecdote = (id) => {
 		const response = await anecdoteService.update(anecdoteToUpdate);
 		dispatch({
 			type: 'VOTE',
-			data: { response }
+			data: response
 		});
 	};
 };
