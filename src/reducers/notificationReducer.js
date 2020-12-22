@@ -22,10 +22,13 @@ const deleteNotification = () => {
 	};
 };
 
+let timeoutID;
+
 export const setNotification = (message, time) => {
 	return dispatch => {
 		dispatch(showNotification(message));
-		setTimeout(() => {
+		clearTimeout(timeoutID);
+		timeoutID = setTimeout(() => {
 			dispatch(deleteNotification());
 		}, time);
 	};
