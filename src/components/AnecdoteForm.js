@@ -1,18 +1,17 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { addAnecdote } from '../reducers/anecdoteReducer';
 import { setNotification } from '../reducers/notificationReducer';
 
-const AnecdoteForm = () => {
-
-	const dispatch = useDispatch();
+const AnecdoteForm = ({ addAnecdote, setNotification }) => {
 
 	const handleAdd = async (e) => {
 		e.preventDefault();
 		const content = e.target.anecdote.value;
-		dispatch(addAnecdote(content));
+		addAnecdote(content);
 		e.target.anecdote.value = '';
-		dispatch(setNotification(`You added an anecdote '${content}'`, 5000));
+		setNotification(`You added an anecdote '${content}'`, 5000);
 	};
 
 	return (
@@ -27,4 +26,9 @@ const AnecdoteForm = () => {
 	);
 };
 
-export default AnecdoteForm;
+AnecdoteForm.propTypes = {
+	addAnecdote: PropTypes.func.isRequired,
+	setNotification: PropTypes.func.isRequired,
+};
+
+export default connect(null, { addAnecdote, setNotification })(AnecdoteForm);
