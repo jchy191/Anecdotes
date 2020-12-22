@@ -5,7 +5,7 @@ import { voteAnecdote } from '../reducers/anecdoteReducer';
 import { setNotification } from '../reducers/notificationReducer';
 
 
-const AnecdoteList = ({anecdotes, filter, voteAnecdote, setNotification}) => {
+const AnecdoteList = ({ anecdotes, filter, voteAnecdote, setNotification }) => {
 
 	const vote = ({ id, content }) => {
 		voteAnecdote(id);
